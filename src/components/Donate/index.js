@@ -3,7 +3,7 @@ import style from './Donate.css';
 
 const Donate = () => {
 	return (
-		<div>
+		<div id="Donate">
 			<h1>Donate!</h1>
 		</div>
 	);

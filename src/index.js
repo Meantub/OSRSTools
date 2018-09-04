@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from './components/Navbar'
-import Donate from './components/Donate'
+//import Navbar from './components/Navbar';
+//import Donate from './components/Donate';
+import Main from './components/Main';
+import './index.css';
 
 const Index = () => {
 	return (
-		<div className="container-fluid">
-			<div className="row">
-				<Navbar />
-				<div className="col" id="main">
-					<Donate />
-				</div>
-			</div>
+		<div>
+			<Main />
 		</div>
 	);
 };
