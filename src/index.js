@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import Navbar from './components/Navbar';
-//import Donate from './components/Donate';
-import Main from './components/Main';
+import { BrowserRouter } from 'react-router-dom';
+
+import App from './components/App';
+
 import './index.css';
 
 const Index = () => {
 	return (
-		<div>
-			<Main />
-		</div>
+		<BrowserRouter><App className="centered" /></BrowserRouter>
 	);
 };
+
 
 ReactDOM.render(<Index />, document.getElementById("index"));
