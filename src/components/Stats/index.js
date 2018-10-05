@@ -3,7 +3,7 @@ import ReactLoading from 'react-loading';
 import axios from 'axios';
 
 
-class Calculator extends Component {
+class Stats extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { userData: "", userDataJSON: {}, isLoaded: false };
@@ -37,7 +37,7 @@ class Calculator extends Component {
 		}
 		return (
 			<div>
-				<h3>Calculator</h3>
+				<h3>Stats</h3>
 				<hr />
 				<ul>
 					{tableItems}
@@ -47,4 +47,4 @@ class Calculator extends Component {
 	}
 }
 
-export default Calculator;
+export default Stats;
