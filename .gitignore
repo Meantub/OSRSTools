@@ -91,3 +91,5 @@ typings/
 .serverless
 
 dist/
+
+.vscode/

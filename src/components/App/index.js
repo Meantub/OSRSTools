@@ -16,9 +16,15 @@ import statsImage from '../../static/img/Stats_icon.png';
 
 const App = () => {
 	return (
-		<div className={appStyles.centered}>
-			<Header />
-			<Main />
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-2"></div>
+				<div className="col-8">
+					<Header />
+					<Main />
+				</div>
+				<div className="col-2"></div>
+			</div>
 		</div>
 	)
 };
@@ -26,7 +32,7 @@ const App = () => {
 // Navbar as well
 const Header = () => (
 	<div>
-		<nav className={appStyles.curvedWindow + " navbar navbar-expand-sm navbar-dark bg-dark"}>
+		<nav className={"navbar navbar-expand-sm navbar-dark bg-dark"}>
 			<Link className="navbar-brand" to="/">OSRSTools</Link>
 			<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
 				<span className="navbar-toggler-icon"></span>
@@ -49,7 +55,7 @@ const Header = () => (
 				</ul>
 				<ul className="navbar-nav">
 					<li className="nav-item my-2 my-lg-0">
-						<NavLink exact to="/stats" className="nav-link" activeClassName="nav-link active"><img src={statsImage} alt="Stats" /> Stats</NavLink>
+						<NavLink exact to="/stats" className="nav-link" activeClassName="nav-link active">Stats <img src={statsImage} alt="Stats" /></NavLink>
 					</li>
 				</ul>
 			</div>
