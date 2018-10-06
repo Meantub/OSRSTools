@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link, NavLink } from 'react-router-dom';
-import equipmentImage from '../../../static/img/Equipment_slots.png';
+import equipmentImage from '../../static/img/Equipment_slots.png';
 
 class Equipment extends Component{
 	render() {

@@ -1,10 +1,14 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 const htmlPlugin = new HtmlWebPackPlugin({
 	template: "./src/index.html",
 	filename: "./index.html"
 });
+
+const copyPlugin = new CopyWebpackPlugin([{ from: './src/static/', to: ''}]);
+
 module.exports = {
 	module: {
 		rules: [
@@ -41,5 +45,8 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [htmlPlugin]
+	devServer: {
+		historyApiFallback: true
+	},
+	plugins: [htmlPlugin, copyPlugin]
 };

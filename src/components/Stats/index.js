@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
 
-
 class Stats extends Component {
 	constructor(props) {
 		super(props);
@@ -30,9 +29,11 @@ class Stats extends Component {
 		var tableItems = <ReactLoading type="bars" color="#000000" height="2rem" width="2rem" />;
 		if(this.state.isLoaded) {
 			tableItems = Object.entries(this.state.userDataJSON.Skills).map(([key, value], id) => {
-				return (
-					<li key={id}>{key}: Level {value.level}</li>
-				)
+				if(id > 0) { // Gets rid of Overall level
+					return (
+						<li key={id}><img src={"/img/icon/skill_icon_" + key.toLowerCase() + "1.gif"} /> {key}: Level {value.level}, XP {value.xp}, Rank {value.rank}</li>
+					)
+				}
 			});
 		}
 		return (

@@ -12,7 +12,7 @@ import appStyles from './App.css';
 import mainStyles from './Main.css';
 
 // Images
-import statsImage from '../../../static/img/Stats_icon.png';
+import statsImage from '../../static/img/Stats_icon.png';
 
 const App = () => {
 	return (
