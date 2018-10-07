@@ -11,7 +11,7 @@ class Stats extends Component {
 
 	componentDidMount() {
 		if(localStorage.getItem('userData') === null) {
-			axios.get('https://1r4u8q2qk7.execute-api.us-east-1.amazonaws.com/DEV/player?user=' + 'earthyoyoman')
+			axios.get('https://1r4u8q2qk7.execute-api.us-east-1.amazonaws.com/DEV/player?user=' + 'meantub')
 				.then(result => {
 					localStorage.setItem('userData', JSON.stringify(result.data));
 					this.setState({ userDataJSON: JSON.parse(localStorage.getItem('userData')) });
@@ -44,7 +44,7 @@ class Stats extends Component {
 					accessor: "skill",
 					Cell: row => (
 						<div>
-							<img src={'/img/icon/' + row.value + '_icon.png'} /> {row.value}
+							<div style={{width: "25px", display: "inline-block"}}><img src={'/img/icon/' + row.value + '_icon.png'} /></div> {row.value}
 						</div>
 					),
 					width: 200
@@ -56,7 +56,8 @@ class Stats extends Component {
 						<div className="progress">
 							<div className={"progress-bar" + (row.value > 25 ? (row.value > 50 ? " bg-success" : " bg-warning") : " bg-danger")} role="progressbar" style={{ width: row.value + "%" }} aria-valuenow={row.value + "%"} aria-valuemin="0%" aria-valuemax="99%">{row.value}</div>
 						</div>
-					)
+					),
+					width: 400
 				},
 				{
 					Header: "XP",
@@ -72,7 +73,11 @@ class Stats extends Component {
 						<div>{row.value.toLocaleString()}</div>
 					)
 				}
-			]} className="-striped -highlight" showPagination={false} defaultPageSize={-1} defaultSorted={[{ id: "skill", desc: false}]} defaultSortDesc="true" />;
+			]} className="-striped -highlight" showPagination={false} defaultPageSize={-1} defaultSorted={[{ id: "skill", desc: false }]} defaultSortDesc={true} getTrProps={(state, rowInfo, column) => {
+				return {
+					className: rowInfo.row.level < 5 ? "text-muted" : ""
+				}
+			}} />;
 		}
 		return (
 			<div>
