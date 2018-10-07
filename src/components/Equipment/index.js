@@ -6,7 +6,7 @@ class Equipment extends Component{
 	render() {
 		return (
 			<div>
-				<img src={equipmentImage} usemap="#image-map"/>
+				<img src={equipmentImage} useMap="#image-map"/>
 
 				<map name="image-map">
 					<area target="" alt="Cape" title="Cape" href="" coords="51,75,15,39" shape="rect"/>

@@ -1,5 +1,36 @@
-.main {
-	background-color: #fff;
+@keyframes panning {
+	0% {
+		background-position: 0% 0%;
+	}
+	25% {
+		background-position: 100% 100%;
+	}
+		50% {
+		background-position: 100% 0%;
+	}
+	75% {
+		background-position: 0 100%;
+	}
+	200% {
+		background-position: 0 0;
+	}
+}
+
+.background {
+	position: absolute;
+	height: 63rem;
+	max-height: 100rem;
+	width: 100%;
+	background: black url('./../../static/img/osrs_map_background.jpg') center; /* Come up with solution */
+	filter: blur(2px);
+	background-attachment: fixed;
+	background-repeat: no-repeat; 
+	overflow: hidden;
+	background-size: 250%;
+	/*animation: panning 500s infinite linear; */
+}
+
+.mainContainer {
+	background-color: #ffffff;
 	padding: 3vh 3vw;
-	min-height: 70vh;
 }

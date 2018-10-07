@@ -11,7 +11,7 @@ class Stats extends Component {
 
 	componentDidMount() {
 		if(localStorage.getItem('userData') === null) {
-			axios.get('https://1r4u8q2qk7.execute-api.us-east-1.amazonaws.com/DEV/player?user=' + 'meantub')
+			axios.get('https://1r4u8q2qk7.execute-api.us-east-1.amazonaws.com/DEV/player?user=' + 'earthyoyoman')
 				.then(result => {
 					localStorage.setItem('userData', JSON.stringify(result.data));
 					this.setState({ userDataJSON: JSON.parse(localStorage.getItem('userData')) });
@@ -51,17 +51,28 @@ class Stats extends Component {
 				},
 				{
 					Header: "Level",
-					accessor: "level"
+					accessor: "level",
+					Cell: row => (
+						<div className="progress">
+							<div className={"progress-bar" + (row.value > 25 ? (row.value > 50 ? " bg-success" : " bg-warning") : " bg-danger")} role="progressbar" style={{ width: row.value + "%" }} aria-valuenow={row.value + "%"} aria-valuemin="0%" aria-valuemax="99%">{row.value}</div>
+						</div>
+					)
 				},
 				{
 					Header: "XP",
-					accessor: "xp"
+					accessor: "xp",
+					Cell: row => (
+						<div>{row.value.toLocaleString()}</div>
+					)
 				},
 				{
 					Header: "Rank",
-					accessor: "rank"
+					accessor: "rank",
+					Cell: row => (
+						<div>{row.value.toLocaleString()}</div>
+					)
 				}
-			]} className="-striped -highlight" showPagination={false} defaultPageSize={-1} />;
+			]} className="-striped -highlight" showPagination={false} defaultPageSize={-1} defaultSorted={[{ id: "skill", desc: false}]} defaultSortDesc="true" />;
 		}
 		return (
 			<div>

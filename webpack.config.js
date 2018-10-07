@@ -26,7 +26,7 @@ module.exports = {
 						loader: "style-loader"
 					},
 					{
-						loader: "css-loader",
+						loader: "css-loader?url=false",
 						options: {
 							modules: true,
 							importLoaders: 1,
@@ -34,7 +34,7 @@ module.exports = {
 							sourceMap: true,
 							minimize: true
 						}
-					}
+					} 
 				]
 			},
 			{

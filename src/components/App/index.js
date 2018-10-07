@@ -8,7 +8,6 @@ import Calculator from '../Calculator';
 import Stats from '../Stats';
 
 // Stylesheets
-import appStyles from './App.css';
 import mainStyles from './Main.css';
 
 // Images
@@ -16,14 +15,18 @@ import statsImage from '../../static/img/Stats_icon.png';
 
 const App = () => {
 	return (
-		<div className="container-fluid">
-			<div className="row">
-				<div className="col-2"></div>
-				<div className="col-8">
-					<Header />
-					<Main />
+		<div>
+			<div className={mainStyles.background}></div>
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-2"></div>
+					<div className="col-8">
+						<Header />
+						<Main />
+						<footer className="section"></footer>
+					</div>
+					<div className="col-2"></div>
 				</div>
-				<div className="col-2"></div>
 			</div>
 		</div>
 	)
@@ -64,7 +67,7 @@ const Header = () => (
 );
 
 const Main = () => (
-	<div className={mainStyles.main}>
+	<div className={"container-fluid " + mainStyles.mainContainer}>
 		<Switch>
 			<Route exact path="/" component={Home} />
 			<Route path="/about" component={About} />
@@ -79,7 +82,39 @@ const Home = () => (
 	<div>
 		<h3>Home</h3>
 		<hr />
-		<p></p>
+		<div className="card-deck">
+			<div className="card">
+				<img className="card-img-top" src="..." alt="Card image cap" />
+				<div className="card-body">
+					<h5 className="card-title">Calculators</h5>
+					<p className="card-text">Figure out how much it's going to cost you to go for those 99s</p>
+				</div>
+				<div className="card-footer">
+					<small className="text-muted">Last updated 3 mins ago</small>
+				</div>
+			</div>
+			<div className="card">
+				<img className="card-img-top" src="..." alt="Card image cap" />
+				<div className="card-body">
+					<h5 className="card-title">Stats</h5>
+					<p className="card-text">Check which of your stats needs the most work!</p>
+				</div>
+				<div className="card-footer">
+					<small className="text-muted">Last updated 3 mins ago</small>
+				</div>
+			</div>
+			<div className="card">
+				<img className="card-img-top" src="..." alt="Card image cap" />
+				<div className="card-body">
+					<h5 className="card-title">Coming soon</h5>
+					<p className="card-text">It's secret and in development</p>
+					<small className="text-muted"><em>shhhhh don't tell anyone</em></small>
+				</div>
+				<div className="card-footer">
+					<small className="text-muted">Last updated 3 mins ago</small>
+				</div>
+			</div>
+		</div>
 	</div>
 );
 
