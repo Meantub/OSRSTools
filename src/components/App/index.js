@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Equipment from '../Equipment';
 import Calculator from '../Calculator';
 import Stats from '../Stats';
+import SkillGetter from '../SkillGetter';
 
 // Stylesheets
 import mainStyles from './Main.css';
@@ -23,7 +24,6 @@ const App = () => {
 					<div className="col-8">
 						<Header />
 						<Main />
-						<footer className="section"></footer>
 					</div>
 					<div className="col-2"></div>
 				</div>
@@ -55,10 +55,13 @@ const Header = () => (
 					<li className="nav-item">
 						<NavLink exact to="/calculator" className="nav-link" activeClassName="nav-link active">Calculators</NavLink>
 					</li>
-				</ul>
-				<ul className="navbar-nav">
 					<li className="nav-item my-2 my-lg-0">
 						<NavLink exact to="/stats" className="nav-link" activeClassName="nav-link active">Stats <img src={statsImage} alt="Stats" /></NavLink>
+					</li>
+				</ul>
+				<ul className="navbar-nav">
+					<li>
+						<SkillGetter />
 					</li>
 				</ul>
 			</div>

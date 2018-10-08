@@ -8,7 +8,8 @@ export default class XPCalculator extends Component {
         super(props);
         this.state = {
             data: null,
-            columns: null
+            columns: null,
+            userData: localStorage.getItem('userData')
         }
     }
 

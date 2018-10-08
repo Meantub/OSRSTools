@@ -6,17 +6,21 @@ import axios from 'axios';
 class Stats extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { userDataJSON: {}, isLoaded: false };
+		this.state = { userDataJSON: {}, isLoaded: false, username: localStorage.getItem('username')!==null ? localStorage.getItem('username') : "" };
 	}
 
 	componentDidMount() {
-		if(localStorage.getItem('userData') === null) {
-			axios.get('https://1r4u8q2qk7.execute-api.us-east-1.amazonaws.com/DEV/player?user=' + 'meantub')
-				.then(result => {
-					localStorage.setItem('userData', JSON.stringify(result.data));
-					this.setState({ userDataJSON: JSON.parse(localStorage.getItem('userData')) });
-					this.setState({ isLoaded: true });
-				});
+		if(localStorage.getItem('userData') === null || localStorage.getItem('userData') === undefined || JSON.parse(localStorage.getItem('userData')).username !== localStorage.getItem('username')) {
+			if(localStorage.getItem('username')!==null) {
+				console.log("getting stats");
+				axios.get('https://1r4u8q2qk7.execute-api.us-east-1.amazonaws.com/DEV/player?user=' + localStorage.getItem('username'))
+					.then(result => {
+						result.data.username = localStorage.getItem('username');
+						localStorage.setItem('userData', JSON.stringify(result.data));
+						this.setState({ userDataJSON: result.data });
+						this.setState({ isLoaded: true });
+					});
+			}
 		}
 		else {
 			this.setState({ userDataJSON: JSON.parse(localStorage.getItem('userData')) });
@@ -27,7 +31,7 @@ class Stats extends Component {
 	render() {
 		var values = "";
 		var table = null;
-		if(this.state.userDataJSON.Skills!==null && this.state.userDataJSON.Skills!==undefined) {
+		if(this.state.userDataJSON!==null && this.state.userDataJSON.Skills!==null && this.state.userDataJSON.Skills!==undefined) {
 			delete(this.state.userDataJSON.Skills.Overall);
 			values = Object.entries(this.state.userDataJSON.Skills)
 				.map(([key,value], id) => {
@@ -54,7 +58,7 @@ class Stats extends Component {
 					accessor: "level",
 					Cell: row => (
 						<div className="progress">
-							<div className={"progress-bar" + (row.value > 25 ? (row.value > 50 ? " bg-success" : " bg-warning") : " bg-danger")} role="progressbar" style={{ width: row.value + "%" }} aria-valuenow={row.value + "%"} aria-valuemin="0%" aria-valuemax="99%">{row.value}</div>
+							<div className={"progress-bar" + (row.value > 25 ? (row.value > 50 ? " bg-success" : " bg-warning") : " bg-danger")} role="progressbar" style={{ width: row.value + "%" }} aria-valuenow={row.value + "%"} aria-valuemin="0%" aria-valuemax="99%"><div style={{ color: "#000" }}>{row.value}</div></div>
 						</div>
 					),
 					width: 400
@@ -75,13 +79,15 @@ class Stats extends Component {
 				}
 			]} className="-striped -highlight" showPagination={false} defaultPageSize={-1} defaultSorted={[{ id: "skill", desc: false }]} defaultSortDesc={true} getTrProps={(state, rowInfo, column) => {
 				return {
-					className: rowInfo.row.level < 5 ? "text-muted" : ""
+					style: {
+						opacity:rowInfo.row.level < 5 ? ".5" : "1"
+					}
 				}
 			}} />;
 		}
 		return (
 			<div>
-				<h3>Stats</h3>
+				<h3>Stats {this.state.username!=="" ? "- " + this.state.username : ""}</h3>
 				<hr />
 				{table===null ? <ReactLoading type="bars" color="#878787" height="8rem" width="8rem" /> : table}
 			</div>
