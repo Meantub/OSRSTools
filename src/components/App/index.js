@@ -92,9 +92,9 @@ const Home = () => (
 					<h5 className="card-title">Calculators</h5>
 					<p className="card-text">Figure out how much it's going to cost you to go for those 99s</p>
 				</div>
-				<div className="card-footer">
+				{/* <div className="card-footer">
 					<small className="text-muted">Last updated 3 mins ago</small>
-				</div>
+				</div> */}
 			</div>
 			<div className="card">
 				<img className="card-img-top" src="..." alt="Card image cap" />
@@ -102,9 +102,9 @@ const Home = () => (
 					<h5 className="card-title">Stats</h5>
 					<p className="card-text">Check which of your stats needs the most work!</p>
 				</div>
-				<div className="card-footer">
+				{/* <div className="card-footer">
 					<small className="text-muted">Last updated 3 mins ago</small>
-				</div>
+				</div> */}
 			</div>
 			<div className="card">
 				<img className="card-img-top" src="..." alt="Card image cap" />
@@ -113,9 +113,9 @@ const Home = () => (
 					<p className="card-text">It's secret and in development</p>
 					<small className="text-muted"><em>shhhhh don't tell anyone</em></small>
 				</div>
-				<div className="card-footer">
+				{/* <div className="card-footer">
 					<small className="text-muted">Last updated 3 mins ago</small>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	</div>
@@ -125,7 +125,7 @@ const About = () => (
 	<div>
 		<h3>About</h3>
 		<hr />
-		<p>I created this website so that everyone could have access to useful tools. I am a broke college student so if this tool was useful to you please turn off your ad blockers as it is is the only way that I can pay for this website, as of right now</p>
+		<p>I created this website so that everyone could have access to useful tools. I am a broke college student so if this tool was useful to you please turn off your ad blockers as it is the only way that I can pay for this website, as of right now</p>
 	</div>
 );
 
