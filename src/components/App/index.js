@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link, NavLink } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 import classNames from 'classnames';
 
 // Classes/pages
@@ -136,8 +137,12 @@ class Contact extends Component {
 		this.state = {
 			email: "",
 			subject: "",
-
+			captchaResponse: "",
 		}
+	}
+
+	storeCaptcha(captchaValue) {
+		this.setState({captchaResponse: captchaValue});
 	}
 
 	handleSubmit(event) {
@@ -150,7 +155,7 @@ class Contact extends Component {
 				<h3>Contact me</h3>
 				<hr />
 				<form onSubmit={this.handleSubmit}>
-					<div class="g-recaptcha" data-sitekey="6LcCm3QUAAAAAMR_es-x5JlRGiu5zsy9bSd4ft9b"></div>
+					<ReCAPTCHA sitekey="6LcCm3QUAAAAAMR_es-x5JlRGiu5zsy9bSd4ft9b" onChange={this.storeCaptcha} />
 				</form>
 			</div>
 		)
