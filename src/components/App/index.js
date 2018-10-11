@@ -49,9 +49,9 @@ const Header = () => (
 					<li className="nav-item">
 						<NavLink exact to="/about" className="nav-link" activeClassName="nav-link active">About</NavLink>
 					</li>
-					<li className="nav-item">
+					{/* <li className="nav-item">
 						<NavLink exact to="/equipment" className="nav-link" activeClassName="nav-link active">Equipment</NavLink>
-					</li>
+					</li> */}
 					<li className="nav-item">
 						<NavLink exact to="/calculator" className="nav-link" activeClassName="nav-link active">Calculators</NavLink>
 					</li>
@@ -74,7 +74,7 @@ const Main = () => (
 		<Switch>
 			<Route exact path="/" component={Home} />
 			<Route path="/about" component={About} />
-			<Route path="/equipment" component={Equipment} />
+			{/* <Route path="/equipment" component={Equipment} /> */}
 			<Route path="/calculator" component={Calculator} />
 			<Route path="/stats" component={Stats} />
 		</Switch>

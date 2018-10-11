@@ -8,7 +8,34 @@ export default class XPCalculator extends Component {
         super(props);
         this.state = {
             data: null,
-            columns: null,
+            columns: [{
+                Header: "Level",
+                accessor: "level"
+            },
+            {
+                Header: props.action==true ? "Action" : "Item",
+                accessor: props.action==true ? "action" : "item"
+            },
+            {
+                Header: "XP",
+                accessor: "xp"
+            },
+            {
+                Header: "Quantity",
+                accessor: "quantity"
+            },
+            {
+                Header: "GP/XP",
+                accessor: "gpPerXp"
+            },
+            {
+                Header: "Proft/Loss",
+                accessor: "pAndL"
+            },
+            {
+                Header: "",
+                accessor: ""
+            }],
             userData: localStorage.getItem('userData')
         }
     }
