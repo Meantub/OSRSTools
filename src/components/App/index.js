@@ -77,6 +77,7 @@ const Main = () => (
 			<Route path="/equipment" component={Equipment} />
 			<Route path="/calculator" component={Calculator} />
 			<Route path="/stats" component={Stats} />
+			<Route path="/contact" component={Contact} />
 		</Switch>
 	</div>
 );
@@ -126,7 +127,34 @@ const About = () => (
 		<h3>About</h3>
 		<hr />
 		<p>I created this website so that everyone could have access to useful tools. I am a broke college student so if this tool was useful to you please turn off your ad blockers as it is is the only way that I can pay for this website, as of right now</p>
+		<p>If you'd like to report a problem with the website you can do so <Link to="/contact">here</Link></p>
 	</div>
 );
+
+class Contact extends Component {
+	componentWillMount() {
+		this.state = {
+			email: "",
+			subject: "",
+
+		}
+	}
+
+	handleSubmit(event) {
+		event.preventDefault();
+	}
+
+	render() {
+		return (
+			<div>
+				<h3>Contact me</h3>
+				<hr />
+				<form onSubmit={this.handleSubmit}>
+					<div class="g-recaptcha" data-sitekey="6LcCm3QUAAAAAMR_es-x5JlRGiu5zsy9bSd4ft9b"></div>
+				</form>
+			</div>
+		)
+	}
+}
 
 export default App;
