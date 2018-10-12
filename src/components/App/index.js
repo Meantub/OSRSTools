@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link, NavLink } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 import ReCAPTCHA from 'react-google-recaptcha';
-import classNames from 'classnames';
+import axios from 'axios';
 
 // Classes/pages
 import Equipment from '../Equipment';
@@ -78,7 +79,6 @@ const Main = () => (
 			{/* <Route path="/equipment" component={Equipment} /> */}
 			<Route path="/calculator" component={Calculator} />
 			<Route path="/stats" component={Stats} />
-			<Route path="/contact" component={Contact} />
 		</Switch>
 	</div>
 );
@@ -94,9 +94,6 @@ const Home = () => (
 					<h5 className="card-title">Calculators</h5>
 					<p className="card-text">Figure out how much it's going to cost you to go for those 99s</p>
 				</div>
-				{/* <div className="card-footer">
-					<small className="text-muted">Last updated 3 mins ago</small>
-				</div> */}
 			</div>
 			<div className="card">
 				<img className="card-img-top" src="..." alt="Card image cap" />
@@ -104,9 +101,6 @@ const Home = () => (
 					<h5 className="card-title">Stats</h5>
 					<p className="card-text">Check which of your stats needs the most work!</p>
 				</div>
-				{/* <div className="card-footer">
-					<small className="text-muted">Last updated 3 mins ago</small>
-				</div> */}
 			</div>
 			<div className="card">
 				<img className="card-img-top" src="..." alt="Card image cap" />
@@ -115,9 +109,6 @@ const Home = () => (
 					<p className="card-text">It's secret and in development</p>
 					<small className="text-muted"><em>shhhhh don't tell anyone</em></small>
 				</div>
-				{/* <div className="card-footer">
-					<small className="text-muted">Last updated 3 mins ago</small>
-				</div> */}
 			</div>
 		</div>
 	</div>
@@ -128,34 +119,97 @@ const About = () => (
 		<h3>About</h3>
 		<hr />
 		<p>I created this website so that everyone could have access to useful tools. I am a broke college student so if this tool was useful to you please turn off your ad blockers as it is is the only way that I can pay for this website, as of right now</p>
-		<p>If you'd like to report a problem with the website you can do so <Link to="/contact">here</Link></p>
+		<Contact />
 	</div>
 );
 
 class Contact extends Component {
-	componentWillMount() {
+	
+	constructor(props) {
+		super(props);
+		this.sendCaptcha = this.sendCaptcha.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+
+		this.handleEmailChange = this.handleEmailChange.bind(this);
+		this.handleSubjectChange = this.handleSubjectChange.bind(this);
+		this.handleMessageChange = this.handleMessageChange.bind(this);
+
 		this.state = {
 			email: "",
 			subject: "",
+			message: "",
 			captchaResponse: "",
+			isGoogleCaptchaLoaded: false,
+			isGoogleCaptchaLoading: false,
+			captchaResult: null
 		}
 	}
 
-	storeCaptcha(captchaValue) {
-		this.setState({captchaResponse: captchaValue});
+	componentDidMount() {}
+
+	handleEmailChange(event) {
+		this.setState({ email: event.target.value });
+	}
+
+	handleSubjectChange(event) {
+		this.setState({ subject: event.target.value });
+	}
+
+	handleMessageChange(event) {
+		this.setState({ message: event.target.value });
 	}
 
 	handleSubmit(event) {
 		event.preventDefault();
+		// If empty ignore
+		if(this.state.email !== "" || this.state.subject !== "" || this.state.message !== "") {
+			
+		}
+	}
+
+	sendCaptcha(captchaValue) {
+		this.setState({captchaResponse: captchaValue});
+		this.setState({isGoogleCaptchaLoading: true});
+
+		const data = JSON.stringify({captchaResponse: this.state.captchaResponse});
+
+		axios.post('https://1r4u8q2qk7.execute-api.us-east-1.amazonaws.com/DEV/captcha', data)
+		.then(result => {
+			console.log("result: " + JSON.stringify(result.data));
+			this.setState({ captchaResult: result.data });
+			if(result.data.message=="Captcha correct") {
+				this.setState({ isGoogleCaptchaLoaded: true });
+				this.setState({ isGoogleCaptchaLoading: false });
+			}
+		})
 	}
 
 	render() {
 		return (
 			<div>
-				<h3>Contact me</h3>
-				<hr />
+				<h2>Contact me</h2>
+				<p>If there are any problems with the website or if you'd like to get into contact with me then this is the form for you!</p>
 				<form onSubmit={this.handleSubmit}>
-					<ReCAPTCHA sitekey="6LcCm3QUAAAAAMR_es-x5JlRGiu5zsy9bSd4ft9b" onChange={this.storeCaptcha} />
+					<div className="form-group">
+						<label htmlFor="inputEmail">Email*</label>
+						<input type="email" className="form-control" aria-describedby="emailHelp" placeholder="Enter email" onChange={this.handleEmailChange} />
+					</div>
+					<div className="form-group">
+						<label htmlFor="inputSubject">Subject</label>
+						<input type="text" className="form-control" placeholder="Type a quick synposis of what you want to say here..." onChange={this.handleSubjectChange} />
+					</div>
+					<div className="form-group">
+						<label htmlFor="inputSubject">Message</label>
+						<textarea type="text" className="form-control" placeholder="Type your message here..." rows="4" onChange={this.handleMessageChange} />
+						<small id="emailHelp" className="form-text text-muted">*I don't save your email, it is just if you need to be contacted back then I have a way to do so</small>
+					</div>
+					<br />
+					<div className="row-form">
+						<ReCAPTCHA sitekey="6LcCm3QUAAAAAMR_es-x5JlRGiu5zsy9bSd4ft9b" onChange={this.sendCaptcha} />
+						<br />
+						{this.state.isGoogleCaptchaLoaded ? <button type="submit" className="btn btn-primary">Send</button> : "" }
+						{this.state.isGoogleCaptchaLoading ? <ReactLoading type="bars" color="#878787" /> : ""}
+					</div>
 				</form>
 			</div>
 		)
