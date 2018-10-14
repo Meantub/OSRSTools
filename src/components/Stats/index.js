@@ -77,7 +77,7 @@ class Stats extends Component {
 						<div>{row.value.toLocaleString()}</div>
 					)
 				}
-			]} className="-striped -highlight" showPagination={false} defaultPageSize={-1} defaultSorted={[{ id: "skill", desc: false }]} defaultSortDesc={true} getTrProps={(state, rowInfo, column) => {
+			]} className="-striped -highlight" showPagination={false} defaultPageSize={23} defaultSorted={[{ id: "skill", desc: false }]} defaultSortDesc={true} getTrProps={(state, rowInfo, column) => {
 				return {
 					style: {
 						opacity:rowInfo.row.level < 5 ? ".5" : "1"
