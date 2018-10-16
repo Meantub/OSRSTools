@@ -49,7 +49,7 @@ const Header = () => (
 						<NavLink exact to="/" className="nav-link" activeClassName="nav-link active">Home</NavLink>
 					</li>
 					<li className="nav-item">
-						<NavLink exact to="/about" className="nav-link" activeClassName="nav-link active">About</NavLink>
+						<NavLink exact to="/contact" className="nav-link" activeClassName="nav-link active">Contact</NavLink>
 					</li>
 					{/* <li className="nav-item">
 						<NavLink exact to="/equipment" className="nav-link" activeClassName="nav-link active">Equipment</NavLink>
@@ -75,7 +75,7 @@ const Main = () => (
 	<div className={"container-fluid " + mainStyles.mainContainer}>
 		<Switch>
 			<Route exact path="/" component={Home} />
-			<Route path="/about" component={About} />
+			<Route path="/contact" component={Contact} />
 			{/* <Route path="/equipment" component={Equipment} /> */}
 			<Route path="/calculator" component={Calculator} />
 			<Route path="/stats" component={Stats} />
@@ -87,6 +87,8 @@ const Home = () => (
 	<div>
 		<h3>Home</h3>
 		<hr />
+		<p>I created this website so that everyone could have access to useful tools. I am a broke college student so if this tool was useful to you please turn off your ad blockers as it is is the only way that I can pay for this website, as of right now.</p>
+		<br />
 		<div className="card-deck">
 			<div className="card">
 				<img className="card-img-top" src="..." alt="Card image cap" />
@@ -96,7 +98,7 @@ const Home = () => (
 				</div>
 			</div>
 			<div className="card">
-				<img className="card-img-top" src="..." alt="Card image cap" />
+				<img className="card-img-top" src="img/stats_image_cap.jpg" alt="Card image cap" />
 				<div className="card-body">
 					<h5 className="card-title">Stats</h5>
 					<p className="card-text">Check which of your stats needs the most work!</p>
@@ -111,15 +113,6 @@ const Home = () => (
 				</div>
 			</div>
 		</div>
-	</div>
-);
-
-const About = () => (
-	<div>
-		<h3>About</h3>
-		<hr />
-		<p>I created this website so that everyone could have access to useful tools. I am a broke college student so if this tool was useful to you please turn off your ad blockers as it is is the only way that I can pay for this website, as of right now</p>
-		<Contact />
 	</div>
 );
 
@@ -181,7 +174,7 @@ class Contact extends Component {
 				this.setState({ isGoogleCaptchaLoaded: true });
 				this.setState({ isGoogleCaptchaLoading: false });
 			}
-		})
+		});
 	}
 
 	render() {
