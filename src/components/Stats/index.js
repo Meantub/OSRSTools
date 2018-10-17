@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
 import ReactTable from 'react-table';
+import DocumentMeta from 'react-document-meta';
 import axios from 'axios';
 
 class Stats extends Component {
@@ -85,12 +86,16 @@ class Stats extends Component {
 				}
 			}} />;
 		}
+		const meta = {
+			title: 'OSRSTools - Stats',
+			keywords: 'osrs hiscores, oldschool hiscores, hiscores'
+		}
 		return (
-			<div>
+			<DocumentMeta {...meta} extend >
 				<h3>Stats {this.state.username!=="" ? "- " + this.state.username : ""}</h3>
 				<hr />
 				{table===null ? <ReactLoading type="bars" color="#878787" height="8rem" width="8rem" /> : table}
-			</div>
+			</DocumentMeta>
 		)
 	}
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link, NavLink } from 'react-router-dom';
 import ReactLoading from 'react-loading';
+import DocumentMeta from 'react-document-meta';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 
@@ -17,8 +18,18 @@ import mainStyles from './Main.css';
 import statsImage from '../../static/img/Stats_icon.png';
 
 const App = () => {
+	const meta = {
+		title: 'OSRSTools',
+		description: 'OSRSTools is a website entirely devoted to Oldschool Runescape with the intent of providing great tools such as XP calculators and stats viewers',
+		meta: {
+			charset: 'utf-8',
+			name: {
+				keywords: 'osrstools, oldschool runescape tools, xp calculator'
+			}
+		}
+	}
 	return (
-		<div>
+		<DocumentMeta {...meta} >
 			<div className={mainStyles.background}></div>
 			<div className="container-fluid">
 				<div className="row">
@@ -30,7 +41,7 @@ const App = () => {
 					<div className="col-2"></div>
 				</div>
 			</div>
-		</div>
+		</DocumentMeta>
 	)
 };
 
@@ -83,38 +94,43 @@ const Main = () => (
 	</div>
 );
 
-const Home = () => (
-	<div>
-		<h3>Home</h3>
-		<hr />
-		<p>I created this website so that everyone could have access to useful tools. I am a broke college student so if this tool was useful to you please turn off your ad blockers as it is is the only way that I can pay for this website, as of right now.</p>
-		<br />
-		<div className="card-deck">
-			<div className="card">
-				<img className="card-img-top" src="..." alt="Card image cap" />
-				<div className="card-body">
-					<h5 className="card-title">Calculators</h5>
-					<p className="card-text">Figure out how much it's going to cost you to go for those 99s</p>
+const Home = () => {
+	const meta = {
+		title: 'OSRSTools - Home'
+	}
+	return (
+		<DocumentMeta {...meta} extend >
+			<h3>Home</h3>
+			<hr />
+			<p>OSRSTools is a website entirely devoted to Oldschool Runescape with the intent of providing great tools such as XP calculators and stats viewers. I am going to regularly being adding to and fixing this website for usage of you the user.</p>
+			<br />
+			<div className="card-deck">
+				<div className="card">
+					<img className="card-img-top" src="..." alt="Card image cap" />
+					<div className="card-body">
+						<h5 className="card-title">Calculators</h5>
+						<p className="card-text">Figure out how much it's going to cost you to go for those 99s</p>
+					</div>
+				</div>
+				<div className="card">
+					<img className="card-img-top" src="img/stats_image_cap.jpg" alt="Card image cap" />
+					<div className="card-body">
+						<h5 className="card-title">Stats</h5>
+						<p className="card-text">Check which of your stats needs the most work!</p>
+					</div>
+				</div>
+				<div className="card">
+					<img className="card-img-top" src="..." alt="Card image cap" />
+					<div className="card-body">
+						<h5 className="card-title">Coming soon</h5>
+						<p className="card-text">It's secret and in development</p>
+						<small className="text-muted"><em>shhhhh don't tell anyone</em></small>
+					</div>
 				</div>
 			</div>
-			<div className="card">
-				<img className="card-img-top" src="img/stats_image_cap.jpg" alt="Card image cap" />
-				<div className="card-body">
-					<h5 className="card-title">Stats</h5>
-					<p className="card-text">Check which of your stats needs the most work!</p>
-				</div>
-			</div>
-			<div className="card">
-				<img className="card-img-top" src="..." alt="Card image cap" />
-				<div className="card-body">
-					<h5 className="card-title">Coming soon</h5>
-					<p className="card-text">It's secret and in development</p>
-					<small className="text-muted"><em>shhhhh don't tell anyone</em></small>
-				</div>
-			</div>
-		</div>
-	</div>
-);
+		</DocumentMeta>
+	)
+};
 
 class Contact extends Component {
 	
@@ -178,8 +194,11 @@ class Contact extends Component {
 	}
 
 	render() {
+		const meta = {
+			title: 'OSRSTools - Contact'
+		};
 		return (
-			<div>
+			<DocumentMeta {...meta} extend >
 				<h2>Contact me</h2>
 				<p>If there are any problems with the website or if you'd like to get into contact with me then this is the form for you!</p>
 				<form onSubmit={this.handleSubmit}>
@@ -204,7 +223,7 @@ class Contact extends Component {
 						{this.state.isGoogleCaptchaLoading ? <ReactLoading type="bars" color="#878787" /> : ""}
 					</div>
 				</form>
-			</div>
+			</DocumentMeta>
 		)
 	}
 }
