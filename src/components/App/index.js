@@ -189,7 +189,7 @@ class Contact extends Component {
 					</div>
 					<div className="form-group">
 						<label htmlFor="inputSubject">Subject</label>
-						<input type="text" className="form-control" placeholder="Type a quick synposis of what you want to say here..." onChange={this.handleSubjectChange} />
+						<input type="text" className="form-control" placeholder="Type a quick synopsis of what you want to say here..." onChange={this.handleSubjectChange} />
 					</div>
 					<div className="form-group">
 						<label htmlFor="inputSubject">Message</label>
