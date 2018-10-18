@@ -94,7 +94,7 @@ class Stats extends Component {
 			<DocumentMeta {...meta} extend >
 				<h3>Stats {this.state.username!=="" ? "- " + this.state.username : ""}</h3>
 				<hr />
-				{table===null ? <ReactLoading type="bars" color="#878787" height="8rem" width="8rem" /> : table}
+				{table===null ? (localStorage.getItem('username')!==null ? <ReactLoading type="bars" color="#878787" height="8rem" width="8rem" /> : <strong>Enter your username in the top right for it to load all your stats into a useful table so you can see what stats need the most work to get you all those 99s</strong>) : table}
 			</DocumentMeta>
 		)
 	}

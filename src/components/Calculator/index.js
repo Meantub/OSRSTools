@@ -15,6 +15,7 @@ class Calculator extends Component {
 			<div>
 				<h3>Calculator</h3>
 				<hr />
+				<p>The cost of each item is retrieved on a daily basis so it will probably be off by small amounts at any given time</p>
 				<XPCalculator />
 			</div>
 		)
