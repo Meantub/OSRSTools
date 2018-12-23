@@ -1,14 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import App from './components/App';
+import App from "./components/App";
 
 const Index = () => {
-	return (
-		<BrowserRouter><App className="centered" /></BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
 };
 
-
-ReactDOM.render(<Index />, document.getElementById("index"));
+ReactDOM.hydrate(<Index />, document.getElementById("index"));
