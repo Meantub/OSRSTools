@@ -1,61 +1,23 @@
 import React, { Component } from "react";
-import ReactLoading from "react-loading";
+import { connect } from "react-redux";
+// import ReactLoading from "react-loading";
 import ReactTable from "react-table";
 import DocumentMeta from "react-document-meta";
-import axios from "axios";
+import { bindActionCreators } from "redux";
+import { setUsername, fetchSkillData } from "../actions/";
 
 class Stats extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userDataJSON: {},
-      isLoaded: false,
-      username:
-        localStorage.getItem("username") !== null
-          ? localStorage.getItem("username")
-          : ""
-    };
   }
 
-  componentDidMount() {
-    if (
-      localStorage.getItem("userData") === null ||
-      localStorage.getItem("userData") === undefined ||
-      JSON.parse(localStorage.getItem("userData")).username !==
-        localStorage.getItem("username")
-    ) {
-      if (localStorage.getItem("username") !== null) {
-        // console.log("getting stats");
-        axios
-          .get(
-            "https://1r4u8q2qk7.execute-api.us-east-1.amazonaws.com/DEV/player?user=" +
-              localStorage.getItem("username")
-          )
-          .then(result => {
-            result.data.username = localStorage.getItem("username");
-            localStorage.setItem("userData", JSON.stringify(result.data));
-            this.setState({ userDataJSON: result.data });
-            this.setState({ isLoaded: true });
-          });
-      }
-    } else {
-      this.setState({
-        userDataJSON: JSON.parse(localStorage.getItem("userData"))
-      });
-      this.setState({ isLoaded: true });
-    }
-  }
+  componentDidMount() {}
 
   render() {
     var values = "";
     var table = null;
-    if (
-      this.state.userDataJSON !== null &&
-      this.state.userDataJSON.Skills !== null &&
-      this.state.userDataJSON.Skills !== undefined
-    ) {
-      delete this.state.userDataJSON.Skills.Overall;
-      values = Object.entries(this.state.userDataJSON.Skills).map(
+    if (this.props.user.skillData != null) {
+      values = Object.entries(this.props.user.skillData.Skills).map(
         ([key, value]) => {
           return {
             skill: key,
@@ -65,6 +27,7 @@ class Stats extends Component {
           };
         }
       );
+      values = values.filter(skill => skill.skill != "Overall");
       table = (
         <ReactTable
           data={values}
@@ -133,38 +96,40 @@ class Stats extends Component {
           }}
         />
       );
+    } else if (this.props.user.username == "") {
+      table = (
+        <strong>
+          Enter your username in the top right for it to load all your stats
+          into a useful table so you can see what stats need the most work to
+          get you all those 99s
+        </strong>
+      );
+    } else if (this.props.user.isLoading == false) {
+      this.props.fetchSkillData(this.props.user.username);
     }
+
     const meta = {
       title: "OSRSTools - Stats",
       keywords: "osrs hiscores, oldschool hiscores, hiscores"
     };
     return (
       <DocumentMeta {...meta} extend>
-        <h3>
-          Stats {this.state.username !== "" ? "- " + this.state.username : ""}
-        </h3>
+        <h3>Stats</h3>
         <hr />
-        {table === null ? (
-          localStorage.getItem("username") !== null ? (
-            <ReactLoading
-              type="bars"
-              color="#878787"
-              height="8rem"
-              width="8rem"
-            />
-          ) : (
-            <strong>
-              Enter your username in the top right for it to load all your stats
-              into a useful table so you can see what stats need the most work
-              to get you all those 99s
-            </strong>
-          )
-        ) : (
-          table
-        )}
+        {table}
       </DocumentMeta>
     );
   }
 }
+const mapStateToProps = state => {
+  return { user: state.user };
+};
 
-export default Stats;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ fetchSkillData, setUsername }, dispatch);
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Stats);

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setUsername } from "../../actions/";
 
-export default class SkillGetter extends Component {
+class SkillGetter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,16 +17,10 @@ export default class SkillGetter extends Component {
   handleChange(event) {
     this.setState({ username: event.target.value });
   }
+
   handleSubmit(event) {
     event.preventDefault();
-    localStorage.setItem("username", this.state.username);
-    window.location.reload();
-  }
-
-  componentWillMount() {
-    if (localStorage.getItem("username") !== null) {
-      this.setState({ username: localStorage.getItem("username") });
-    }
+    this.props.setUsername(this.state.username);
   }
 
   render() {
@@ -47,3 +44,16 @@ export default class SkillGetter extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ setUsername }, dispatch);
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SkillGetter);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import XPCalculator from "./XPCalculator";
+// import XPCalculator from "../Components/XPCalculator";
 
 class Calculator extends Component {
   constructor(props) {
