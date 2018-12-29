@@ -18,7 +18,11 @@ const Home = () => {
       <br />
       <div className="card-deck">
         <div className="card">
-          <img className="card-img-top" src="..." alt="Card image cap" />
+          <img
+            className="card-img-top"
+            src="img/hazard_image_cap.jpg"
+            alt="Card image cap"
+          />
           <div className="card-body">
             <h5 className="card-title">Calculators</h5>
             <p className="card-text">
@@ -40,7 +44,11 @@ const Home = () => {
           </div>
         </div>
         <div className="card">
-          <img className="card-img-top" src="..." alt="Card image cap" />
+          <img
+            className="card-img-top"
+            src="img/hazard_image_cap.jpg"
+            alt="Card image cap"
+          />
           <div className="card-body">
             <h5 className="card-title">Coming soon</h5>
             <p className="card-text">It's secret and in development</p>

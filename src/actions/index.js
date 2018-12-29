@@ -9,6 +9,14 @@ export const setUsername = username => ({
   }
 });
 
+export const setUsernameAndFetchSkillData = username => {
+  return dispatch => {
+    dispatch(setUsername(username));
+
+    dispatch(fetchSkillData(username));
+  };
+};
+
 export const fetchSkillData = username => {
   return dispatch => {
     dispatch(fetchingSkillData());
@@ -19,14 +27,12 @@ export const fetchSkillData = username => {
   };
 };
 
-export const fetchingSkillData = () => {
-  return {
-    type: FETCHING_SKILL_DATA,
-    payload: {
-      isLoading: true
-    }
-  };
-};
+export const fetchingSkillData = () => ({
+  type: FETCHING_SKILL_DATA,
+  payload: {
+    isLoading: true
+  }
+});
 
 export const fetchedSkillData = skillData => ({
   type: FETCHED_SKILL_DATA,

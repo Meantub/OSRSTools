@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const webpack = require("webpack");
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
@@ -49,5 +50,12 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
-  plugins: [htmlPlugin, copyPlugin, friendlyErrorsWebpackPlugin]
+  plugins: [
+    htmlPlugin,
+    copyPlugin,
+    friendlyErrorsWebpackPlugin,
+    new webpack.DefinePlugin({
+      __REACT_DEVTOOLS_GLOBAL_HOOK__: "({ isDisabled: true })"
+    })
+  ]
 };

@@ -105,7 +105,7 @@ class Stats extends Component {
         </strong>
       );
     } else if (this.props.user.isLoading == false) {
-      this.props.fetchSkillData(this.props.user.username);
+      // this.props.fetchSkillData(this.props.user.username);
     }
 
     const meta = {

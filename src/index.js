@@ -16,4 +16,5 @@ const Index = () => {
   );
 };
 
-ReactDOM.hydrate(<Index />, document.getElementById("index"));
+// NOTE: If changed to ReactDOM.hydrate() it will cause it to give non matching div error
+ReactDOM.render(<Index />, document.getElementById("index"));

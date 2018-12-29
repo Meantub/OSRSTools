@@ -30,7 +30,7 @@ const App = () => {
   };
   return (
     <DocumentMeta {...meta}>
-      <div className={mainStyles.background} />
+      {/* <div className={mainStyles.background} /> */}
       <div className="container-fluid">
         <div className="row">
           <div className="col-2" />
