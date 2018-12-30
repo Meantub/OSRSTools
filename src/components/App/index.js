@@ -12,6 +12,7 @@ import Contact from "../../pages/Contact";
 
 // Components
 import Header from "../Header";
+import Footer from "../Footer";
 
 // Stylesheets
 import mainStyles from "./Main.css";
@@ -30,13 +31,13 @@ const App = () => {
   };
   return (
     <DocumentMeta {...meta}>
-      {/* <div className={mainStyles.background} /> */}
       <div className="container-fluid">
         <div className="row">
           <div className="col-2" />
           <div className="col-8">
             <Header />
             <Main />
+            <Footer />
           </div>
           <div className="col-2" />
         </div>

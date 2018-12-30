@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import ReactLoading from "react-loading";
+import ReactLoading from "react-loading";
 import ReactTable from "react-table";
 import DocumentMeta from "react-document-meta";
 import { bindActionCreators } from "redux";
@@ -14,8 +14,8 @@ class Stats extends Component {
   componentDidMount() {}
 
   render() {
-    var values = "";
-    var table = null;
+    var values = null;
+    var table = "";
     if (this.props.user.skillData != null) {
       values = Object.entries(this.props.user.skillData.Skills).map(
         ([key, value]) => {
@@ -104,8 +104,8 @@ class Stats extends Component {
           get you all those 99s
         </strong>
       );
-    } else if (this.props.user.isLoading == false) {
-      // this.props.fetchSkillData(this.props.user.username);
+    } else if (this.props.user.isLoading == true) {
+      table = <ReactLoading type="bubbles" color="#000000" />;
     }
 
     const meta = {

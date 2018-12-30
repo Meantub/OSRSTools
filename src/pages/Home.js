@@ -1,5 +1,6 @@
 import React from "react";
 import DocumentMeta from "react-document-meta";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const meta = {
@@ -18,31 +19,42 @@ const Home = () => {
       <br />
       <div className="card-deck">
         <div className="card">
-          <img
-            className="card-img-top"
-            src="img/hazard_image_cap.jpg"
-            alt="Card image cap"
-          />
-          <div className="card-body">
-            <h5 className="card-title">Calculators</h5>
-            <p className="card-text">
-              Figure out how much it's going to cost you to go for those 99s
-            </p>
-          </div>
+          <Link
+            to="/calculator"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <img
+              className="card-img-top"
+              src="img/hazard_image_cap.jpg"
+              alt="Card image cap"
+            />
+            <div className="card-body">
+              <h5 className="card-title">Calculators</h5>
+              <p className="card-text">
+                Figure out how much it's going to cost you to go for those 99s
+              </p>
+            </div>
+          </Link>
         </div>
         <div className="card">
-          <img
-            className="card-img-top"
-            src="img/stats_image_cap.jpg"
-            alt="Card image cap"
-          />
-          <div className="card-body">
-            <h5 className="card-title">Stats</h5>
-            <p className="card-text">
-              Check which of your stats needs the most work!
-            </p>
-          </div>
+          <Link
+            to="/stats"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <img
+              className="card-img-top"
+              src="img/stats_image_cap.jpg"
+              alt="Card image cap"
+            />
+            <div className="card-body">
+              <h5 className="card-title">Stats</h5>
+              <p className="card-text">
+                Check which of your stats needs the most work!
+              </p>
+            </div>
+          </Link>
         </div>
+
         <div className="card">
           <img
             className="card-img-top"
