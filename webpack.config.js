@@ -3,6 +3,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const webpack = require("webpack");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
@@ -47,6 +48,9 @@ module.exports = {
       }
     ]
   },
+  output: {
+    filename: "bundle.[contenthash].js"
+  },
   devServer: {
     historyApiFallback: true
   },
@@ -57,5 +61,8 @@ module.exports = {
     new webpack.DefinePlugin({
       __REACT_DEVTOOLS_GLOBAL_HOOK__: "({ isDisabled: true })"
     })
-  ]
+  ],
+  optimization: {
+    minimizer: [new UglifyJsPlugin()]
+  }
 };

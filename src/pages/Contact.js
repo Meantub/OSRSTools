@@ -64,7 +64,6 @@ export default class Contact extends Component {
         data
       )
       .then(result => {
-        // console.log("result: " + JSON.stringify(result.data));
         this.setState({ captchaResult: result.data });
         if (result.data.message == "Captcha correct") {
           this.setState({ isGoogleCaptchaLoaded: true });

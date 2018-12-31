@@ -5,6 +5,7 @@ import ReactTable from "react-table";
 import DocumentMeta from "react-document-meta";
 import { bindActionCreators } from "redux";
 import { setUsername, fetchSkillData } from "../actions/";
+import "react-table/react-table.css";
 
 class Stats extends Component {
   constructor(props) {

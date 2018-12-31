@@ -14,9 +14,6 @@ import Contact from "../../pages/Contact";
 import Header from "../Header";
 import Footer from "../Footer";
 
-// Stylesheets
-import mainStyles from "./Main.css";
-
 const App = () => {
   const meta = {
     title: "OSRSTools",
@@ -47,7 +44,10 @@ const App = () => {
 };
 
 const Main = () => (
-  <div className={"container-fluid " + mainStyles.mainContainer}>
+  <div
+    style={{ backgroundColor: "#ffffff", padding: "3vh 3vw" }}
+    className="container-fluid"
+  >
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/contact" component={Contact} />
